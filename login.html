@@ -97,16 +97,16 @@
                 <div class="col-lg-6">
                     <div class="login__form">
                         <h3>Login</h3>
-                        <form action="#">
+                        <form action="/index.html" method="post">
                             <div class="input__item">
-                                <input type="text" placeholder="Email address">
+                                <input type="text" placeholder="Email address" id="Email" name="email" required>
                                 <span class="icon_mail"></span>
                             </div>
                             <div class="input__item">
-                                <input type="text" placeholder="Password">
+                                <input type="text" placeholder="Password" id="Password" name="password" required>
                                 <span class="icon_lock"></span>
                             </div>
-                            <button type="submit" class="site-btn">Đăng nhập</button>
+                            <input type="submit" class="site-btn" value="Login"></input>
                         </form>
                         <a href="#" class="forget_pass">Quên mật khẩu</a>
                     </div>
@@ -191,7 +191,7 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-
+    <script src="severdb/login.js"></script>
 
 </body>
 
