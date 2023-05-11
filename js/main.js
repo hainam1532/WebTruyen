@@ -97,5 +97,5 @@
         $("html, body").animate({ scrollTop: 0 }, "slow");
         return false;
      });
-    const sign_up_email=document.querySelector('')
+    
 })(jQuery);
