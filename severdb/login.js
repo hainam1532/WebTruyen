@@ -1,94 +1,54 @@
-const express = require("express");
+const express = require('express');
 const mysql = require('mysql');
-const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const session = require('express-session');
-const bcrypt = require('bcrypt');
 
 const app = express();
+const port = 3000;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+// Set up session middleware
 app.use(session({
-  secret: 'mysecret',
-  resave: true,
-  saveUninitialized: true
+  secret: 'mysecretkey',
+  resave: false,
+  saveUninitialized: false
 }));
 
-// Kết nối tới cơ sở dữ liệu MySQL
+// Set up body-parser middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Create database connection
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'nam2!MMy1A1ne1zY',
-  database: 'test'
+  password: '',
+  database: 'account'
 });
 
-connection.connect();
+// Connect to database
+connection.connect((err) => {
+  if (err) throw err;
+  console.log('Kết nối vào db');
+});
 
-// Đăng nhập
+// Define route for login page
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/login.html');
+});
+
+// Define route for handling login
 app.post('/login', (req, res) => {
-  const { email } = req.body;
+  const email = req.body.email;
+  const password = req.body.password;
 
-  // Truy vấn cơ sở dữ liệu để tìm kiếm tài khoản người dùng với email tương ứng
-  connection.query('SELECT * FROM USERS WHERE email = ?', [email], (error, results, fields) => {
-    if (error) {
-      console.error(error);
-      res.status(500).json({
-        message: 'Lỗi máy chủ'
-      });
-      return;
+  // Check username and password against database
+  const sql = `SELECT * FROM LOGIN WHERE email = '${email}' AND password = '${password}'`;
+  connection.query(sql, (err, result) => {
+    if (err) throw err;
+
+    if (result.length > 0) {
+      // Save user data in session
+      req.session.user = result[0];
+      res.redirect('/Login');
+    } else {
+      res.send('Sai email hoặc mật khẩu');
     }
-
-    if (results.length === 0) {
-      res.status(401).json({
-        message: 'Sai email hoặc password'
-      });
-      return;
-    }
-
-    const user = results[0];
-
-    // So sánh mật khẩu được nhập vào với mật khẩu trong cơ sở dữ liệu
-    bcrypt.compare(password, user.password, (error, result) => {
-      if (error) {
-        console.error(error);
-        res.status(500).json({
-          message: 'Lỗi máy chủ'
-        });
-        return;
-      }
-
-      if (!result) {
-        res.status(401).json({
-          message: 'Sai email hoặc password'
-        });
-        return;
-      }
-
-      // Lưu thông tin phiên đăng nhập
-      req.session.userId = user.id;
-
-      res.json({
-        message: 'Đăng nhập thành công'
-      });
-    });
-  });
-});
-
-// Xác thực tài nguyên bảo mật
-app.get('/index.html', (req, res) => {
-  if (!req.session.userId) {
-    res.status(401).json({
-      message: 'Không cho phép'
-    });
-    return;
-  }
-
-  res.json({
-    message: 'An toàn'
-  });
-});
-
-app.listen(9000, () => {
-  console.log('Sever đang chạy trên port: 9000');
-});
