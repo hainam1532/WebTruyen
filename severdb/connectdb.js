@@ -9,7 +9,7 @@ const app = express();
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'nam2!MMy1A1ne1zY',
     database: 'test'
 });
 
@@ -22,8 +22,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 //Lay du lieu tu bang "USERS"
-app.get('/', (req, res) => {
-    connection.query('SELECT * FROM USERS', (error,rows) => {
+app.get('/data', (req, res) => {
+    connection.query('SELECT * FROM USERS ', (error,rows) => {
         if(error) {
             console.error(error.message);
             res.status(500).send('Internal sever error');
