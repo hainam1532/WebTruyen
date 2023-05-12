@@ -16,6 +16,7 @@
   "author": "hainam",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
@@ -23,12 +24,10 @@
 =======
     "ejs": "^3.1.9",
 >>>>>>> Stashed changes
+=======
+    "body-parser": "^1.20.2",
+>>>>>>> parent of 119a6c6 (xử lý login -> client -> sever)
     "express": "^4.18.2",
-    "express-session": "^1.17.3",
     "mysql": "^2.18.1"
-  },
-  "devDependencies": {
-    "webpack": "^5.82.1",
-    "webpack-cli": "^5.1.1"
   }
 }
