@@ -419,6 +419,7 @@ ol {
 
 .header__right {
 	text-align: right;
+	display:flex;
 	padding: 20px 0 15px;
 }
 
@@ -431,6 +432,10 @@ ol {
 
 .header__right a:last-child {
 	margin-right: 0;
+}
+.header__right .profile_name{
+	color:#fff;
+	display: inline;
 }
 
 .slicknav_menu {
