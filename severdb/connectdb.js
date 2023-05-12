@@ -1,28 +1,39 @@
 const mysql = require('mysql');
+const express = require("express");
+const bodyParser = require('body-parser');
 
+const app = express();
+
+
+//Ket noi co so du lieu MySql
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'account'
+    database: 'test'
 });
 
-connection.connect((err) => {
-    if (err) {
-        console.error('Lỗi kết nối database: ' + err.stack);
-        return;
-    }
+connection.connect();
 
-    console.log('Đã kết nối với cơ sở dữ liệu dưới dạng id ' + connection.threadId);
-});
 
-connection.query('SELECT * FROM LOGIN', (err, rows, fields) => {
-    if (err) {
-        console.error('Lỗi khi thực hiện truy vấn: ' + err.stack);
-        return;
-    }
+//Su dung body-parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
-    console.log('Kết quả truy vấn: ', rows);
-});
 
-connection.end();
+//Lay du lieu tu bang "USERS"
+app.get('/', (req, res) => {
+    connection.query('SELECT * FROM USERS', (error,rows) => {
+        if(error) {
+            console.error(error.message);
+            res.status(500).send('Internal sever error');
+        }
+        let lastTenElemnts = rows.slice(-3);
+        res.send(lastTenElemnts);
+    })
+})
+
+//Chay sever
+app.listen(5050, () => {
+    console.log('Server đang chạy trên PORT 5050');
+})
