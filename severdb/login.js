@@ -30,8 +30,9 @@ const connection = mysql.createConnection({
 connection.connect();
 
 // Đăng nhập
-app.post('/login', (req, res) => {
+app.get('/login', (req, res) => {
   const { email, password } = req.body;
+
 
   // Truy vấn cơ sở dữ liệu để tìm kiếm tài khoản người dùng với email tương ứng
   connection.query('SELECT * FROM USERS WHERE email = ?', [email], (error, results, fields) => {
@@ -89,6 +90,12 @@ app.get('/index.html', (req, res) => {
   res.json({
     message: 'An toàn'
   });
+});
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:9000/login"); // Địa chỉ của client-side
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
 
 app.listen(9000, () => {
