@@ -433,10 +433,18 @@ ol {
 .header__right a:last-child {
 	margin-right: 0;
 }
-.header__right .profile_name{
+.header__right #profile_name{
 	color:#fff;
 }
-
+.header__right #logout{
+	white-space: nowrap;
+	font-size: 10px;
+	background-color: #673ab7;
+	color: white;
+	height: 30px;
+	margin-left: 10px;
+	display: none;
+}
 .slicknav_menu {
 	display: none;
 }

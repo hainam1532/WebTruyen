@@ -1,15 +1,18 @@
 function login(e){
     event.preventDefault();
-    var username = document.getElementById("username").value;
+    var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
-    var user = localStorage.getItem(username);
-    var data = JSON.parse(user);
-    if(username == data.username && password == data.password){
+    var account
+    for(var i=0;i<localStorage.length;i++){
+        var key=localStorage.key(i)
+        account=JSON.parse(localStorage.getItem(key))
+        // if(account && username == account.username && password == account.password){
+        if(account && account && email == account.username && password == account.password){
+        sessionStorage.setItem("userloginname",account.name)
         alert("Đăng nhập thành công")
         window.location.href = "index.html"
+        return;
     }
-    else{
-        alert("Đăng nhập thất bại !! Vui lòng thử lại")
-    }
-
+}
+alert("Đăng nhập thất bại !! Vui lòng thử lại")
 }

@@ -6,6 +6,8 @@
     <meta name="description" content="Anime Template">
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="953636574438-phuua5bh6d96f48q0hb4fa531iouif0s.apps.googleusercontent.com">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Anime | Template</title>
 
@@ -44,7 +46,7 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="header__nav">
-                        <nav class="header__menu mobile-menu">
+                        <!-- <nav class="header__menu mobile-menu">
                             <ul>
                                 <li><a href="./index.html">Homepage</a></li>
                                 <li><a href="./categories.html">Categories <span class="arrow_carrot-down"></span></a>
@@ -60,14 +62,14 @@
                                 <li><a href="./blog.html">Our Blog</a></li>
                                 <li><a href="#">Contacts</a></li>
                             </ul>
-                        </nav>
+                        </nav> -->
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="header__right">
                         <a href="#" class="search-switch"><span class="icon_search"></span></a>
                         <a href="./login.html"><span class="icon_profile"></span></a>
-                        <!-- <p class="profile_name">gsadgsadg</p> -->
+                        <p id="profile_name"></p>
                     </div>
                 </div>
             </div>
@@ -99,6 +101,7 @@
                     <div class="login__form">
                         <h3>Sign Up</h3>
                         <form onsubmit="signup()">
+                            <!-- <form id="sign_up"> -->
                             <div class="input__item">
                                 <input type="text" id='username' placeholder="Username" required>
                                 <span class="icon_mail"></span>
@@ -108,7 +111,7 @@
                                 <span class="icon_profile"></span>
                             </div>
                             <div class="input__item">
-                                <input type="text" id='password' placeholder="Mật khẩu" required>
+                                <input type="password" id='password' placeholder="Mật khẩu" required>
                                 <span class="icon_lock"></span>
                             </div>
                             <button type="submit" class="site-btn">Đăng ký</button>
@@ -120,8 +123,7 @@
                     <div class="login__social__links">
                         <h3>Login With:</h3>
                         <ul>
-                            <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Đăng nhập bằng Facebook</a>
-                            </li>
+                            <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Đăng nhập bằng Facebook</a></li>
                             <li><a href="#" class="google"><i class="fa fa-google"></i> Đăng nhập bằng Google</a></li>
                             <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Đăng nhập bằng Twitter</a></li>
                         </ul>
@@ -185,7 +187,11 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/signupTest.js"></script>
+    <script src="js/sigupTest.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
 </body>
 
 </html>
